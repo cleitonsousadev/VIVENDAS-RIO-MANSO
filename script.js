@@ -47,6 +47,6 @@ document.querySelectorAll('a[href*="wa.me"]').forEach(link => {
             "Olá! Tenho interesse nas glebas do Vivendas Rio Manso. Pode me passar mais informações?"
         );
 
-        link.href = `https://wa.me/5531999999999?text=${msg}`;
+        link.href = `https://wa.me/5531999509944?text=${msg}`;
     });
 });
