@@ -6,13 +6,18 @@ menuIcon.addEventListener('click', () => {
     menu.classList.toggle('active');
 });
 
+// FECHAR MENU AO CLICAR
+document.querySelectorAll('.menu a').forEach(link => {
+    link.addEventListener('click', () => {
+        menu.classList.remove('active');
+    });
+});
+
 // SCROLL SUAVE
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
         e.preventDefault();
-
-        const target = document.querySelector(this.getAttribute('href'));
-        target.scrollIntoView({
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
             behavior: 'smooth'
         });
     });
@@ -25,9 +30,9 @@ function revealOnScroll() {
     const windowHeight = window.innerHeight;
 
     reveals.forEach(el => {
-        const elementTop = el.getBoundingClientRect().top;
+        const top = el.getBoundingClientRect().top;
 
-        if (elementTop < windowHeight - 100) {
+        if (top < windowHeight - 100) {
             el.classList.add('active');
         }
     });
@@ -35,24 +40,13 @@ function revealOnScroll() {
 
 window.addEventListener('scroll', revealOnScroll);
 
-// BOTÕES PERSONALIZADOS WHATSAPP
-const whatsappLinks = document.querySelectorAll('a[href*="wa.me"]');
-
-whatsappLinks.forEach(link => {
+// WHATSAPP COM MENSAGEM AUTOMÁTICA
+document.querySelectorAll('a[href*="wa.me"]').forEach(link => {
     link.addEventListener('click', () => {
-        const message = encodeURIComponent(
-            "Olá! Tenho interesse nos lotes do Vivendas Rio Manso. Pode me passar mais informações?"
+        const msg = encodeURIComponent(
+            "Olá! Tenho interesse nas glebas do Vivendas Rio Manso. Pode me passar mais informações?"
         );
 
-        link.href = `https://wa.me/5531999999999?text=${message}`;
-    });
-});
-
-// BOTÃO INSTAGRAM (opcional interação)
-const instaLinks = document.querySelectorAll('a[href*="instagram"]');
-
-instaLinks.forEach(link => {
-    link.addEventListener('click', () => {
-        alert("Abrindo Instagram do Vivendas Rio Manso 📸");
+        link.href = `https://wa.me/5531999999999?text=${msg}`;
     });
 });
