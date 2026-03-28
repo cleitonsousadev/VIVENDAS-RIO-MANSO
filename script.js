@@ -1,41 +1,27 @@
 // MENU MOBILE
-const menuIcon = document.querySelector('.mobile-menu-icon');
 const menu = document.querySelector('.menu');
+const mobileMenuIcon = document.querySelector('.mobile-menu-icon');
 
-menuIcon.addEventListener('click', () => {
+mobileMenuIcon.addEventListener('click', () => {
     menu.classList.toggle('active');
 });
 
-// FECHAR MENU AO CLICAR EM LINK
-document.querySelectorAll('.menu a').forEach(link => {
-    link.addEventListener('click', () => {
-        menu.classList.remove('active');
-    });
-});
+// SCROLL REVEAL SIMPLES
+const revealElements = document.querySelectorAll('.reveal');
 
-// SCROLL SUAVE
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e){
-        e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({behavior:'smooth'});
-    });
-});
-
-// REVEAL AO SCROLL
-const reveals = document.querySelectorAll('.reveal');
-function revealOnScroll(){
+const revealOnScroll = () => {
     const windowHeight = window.innerHeight;
-    reveals.forEach(el=>{
-        const top = el.getBoundingClientRect().top;
-        if(top < windowHeight - 100) el.classList.add('active');
-    });
-}
-window.addEventListener('scroll', revealOnScroll);
+    const revealPoint = 150;
 
-// WHATSAPP COM MENSAGEM AUTOMÁTICA
-document.querySelectorAll('a[href*="wa.me"]').forEach(link=>{
-    link.addEventListener('click',()=>{
-        const msg = encodeURIComponent("Olá! Tenho interesse nas glebas do Vivendas Rio Manso. Pode me passar mais informações?");
-        link.href = `https://wa.me/5531999509944?text=${msg}`;
+    revealElements.forEach(el => {
+        const revealTop = el.getBoundingClientRect().top;
+
+        if(revealTop < windowHeight - revealPoint) {
+            el.classList.add('active');
+        } else {
+            el.classList.remove('active');
+        }
     });
-});
+};
+
+window.addEventListener('scroll', revealOnScroll);
